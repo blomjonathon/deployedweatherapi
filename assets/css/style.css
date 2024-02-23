@@ -1,0 +1,54 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(243, 243, 243, 0.947);
+}
+h1{
+    font-size: 34px;
+}
+h2{
+    font-size: 30;
+}
+h3{
+    font-size: 24px;
+}
+h4{
+    font-size: 20px;
+}
+h5{
+    font-size: 18px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    padding: 4px 0px 0px 400px;
+    padding-left: 400px; 
+    background: linear-gradient(to left, #4B0082, #00008B);
+    height: 60px;
+    color: white
+}
+.searchForm{
+    padding: 0px 10px 0px 10px;
+}
+#dayCard{
+    background: linear-gradient(to bottom, #2a256a, #544c79);
+    color: white;
+    border-radius: 20px;
+    padding-top: 5px;
+}
+#history{
+    width: 100%;
+    text-align: center;
+    border-radius: 25px;
+    border-style: none;
+    margin-top: 10px;
+    line-height: 40px;
+    background-color: rgb(182, 182, 188);
+}
+#history:hover{
+    opacity: .7;
+}
