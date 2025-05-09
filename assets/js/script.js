@@ -55,16 +55,20 @@ let cityBigContent = $(`<div class="p-3 border border-dark border-1px">
 function createCityBigCard() {
   let currentDay = dayjs();
   const search = $("#searchBtn");
+  const searchBar = $("#searchBar");
 
-  search.on("click", function () {
+  // Function to perform the search
+  function performSearch() {
     const myKey = "bcb6773f3b002fedb6080301885d15d3";
     let lat;
     let lon;
     let cityName = $("#searchBar");
     let inputValue = cityName.val();
+    
+    if (!inputValue.trim()) return; // Don't search if input is empty
+    
     const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&lat=${lat}&lon=${lon}&limit=1&appid=${myKey}`;
 
-  
     cityBig.append(cityBigContent);
     
     let updateCityTitle = $("#cityTitle");
@@ -74,7 +78,6 @@ function createCityBigCard() {
       $.ajax({
         url: apiUrl,
         success: function (data) {
-
           for (let i = 0; i < data.length; i++) {
             const item = data[i];
             const latitude = item.lat;
@@ -160,6 +163,17 @@ function createCityBigCard() {
       historyButton.val(inputValue);
       API();
     });
+  }
+
+  // Click event for search button
+  search.on("click", performSearch);
+
+  // Enter key event for search bar
+  searchBar.on("keypress", function(e) {
+    if (e.which === 13) { // 13 is the Enter key
+      e.preventDefault();
+      performSearch();
+    }
   });
 }
 

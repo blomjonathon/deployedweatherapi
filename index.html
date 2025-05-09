@@ -28,28 +28,35 @@
     </header>
     
     <main class="container-fluid">
-        <section class="row p-3">
-            <div class="searchForm col-12 col-md-3 pb-3">
-                <h2>Search for a City:</h2>
-                <div class="pb-3">
-                    <input type="text" 
-                           id="searchBar" 
-                           class="form-control" 
-                           placeholder="Enter city name..."
-                           aria-label="City search">
+        <div class="row g-3">
+            <!-- Search Section -->
+            <div class="col-12 col-md-3">
+                <div class="searchForm">
+                    <h2>Search for a City:</h2>
+                    <div class="mb-3">
+                        <input type="text" 
+                               id="searchBar" 
+                               class="form-control" 
+                               placeholder="Enter city name..."
+                               aria-label="City search">
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" 
+                                id="searchBtn" 
+                                class="btn btn-primary w-100"
+                                aria-label="Search">
+                            Search
+                        </button>
+                    </div>
+                    <div id="historyButton" class="mt-3"></div>
                 </div>
-                <div class="border-bottom border-2 border-gray pb-3">
-                    <button type="button" 
-                            id="searchBtn" 
-                            class="btn btn-primary w-100"
-                            aria-label="Search">
-                        Search
-                    </button>
-                </div>
-                <div id="historyButton" class="mt-3"></div>
             </div>
-            <div id="cityBig" class="col-12 col-md-9"></div>
-        </section>
+            
+            <!-- Weather Display Section -->
+            <div class="col-12 col-md-9">
+                <div id="cityBig" class="h-100"></div>
+            </div>
+        </div>
     </main>
 </body>
 </html> 

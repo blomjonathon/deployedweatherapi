@@ -12,6 +12,7 @@
     --background-light: #f8f9fa;
     --background-dark: #2a256a;
     --transition-speed: 0.3s;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -21,30 +22,31 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
+    min-height: 100vh;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 700;
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
     font-weight: 600;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     font-weight: 600;
 }
 
 h4 {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: 500;
 }
 
 h5 {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
     font-weight: 500;
 }
 
@@ -55,17 +57,19 @@ h5 {
     padding: 1rem;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--text-light);
-    height: 70px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 70px;
+    box-shadow: var(--card-shadow);
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .searchForm {
     padding: 1.5rem;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow);
     margin: 1rem;
+    height: fit-content;
 }
 
 #searchBar {
@@ -104,12 +108,23 @@ h5 {
     border-radius: 15px;
     padding: 1.5rem;
     margin: 1rem 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow);
     transition: transform var(--transition-speed);
+    height: 100%;
 }
 
 #dayCard:hover {
     transform: translateY(-3px);
+}
+
+#dayCard img {
+    max-width: 100%;
+    height: auto;
+}
+
+#dayCard p {
+    margin: 0.5rem 0;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 #history {
@@ -148,16 +163,89 @@ h5 {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .title {
+    .container-fluid {
         padding: 0.5rem;
-        height: auto;
+    }
+
+    .title {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
     }
     
     .searchForm {
         margin: 0.5rem;
+        padding: 1rem;
     }
     
     #dayCard {
         margin: 0.5rem 0;
+        padding: 1rem;
+    }
+
+    #dayCards {
+        gap: 0.5rem;
+    }
+
+    #dayCards .col-2 {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    #cityBig {
+        padding: 0.5rem;
+    }
+
+    #cityBig img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #cityTitle {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    #bigTemp, #bigWind, #bigHum {
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .searchForm {
+        margin: 0.25rem;
+        padding: 0.75rem;
+    }
+
+    #searchBar {
+        padding: 0.5rem;
+    }
+
+    #searchBtn {
+        padding: 0.5rem;
+    }
+
+    #dayCard {
+        padding: 0.75rem;
+    }
+
+    #dayCard p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .title {
+        min-height: 50px;
+    }
+
+    .searchForm {
+        padding: 0.75rem;
+    }
+
+    #dayCard {
+        padding: 0.75rem;
     }
 }
