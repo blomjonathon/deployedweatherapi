@@ -70,9 +70,11 @@ function createCityBigCard() {
     const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&lat=${lat}&lon=${lon}&limit=1&appid=${myKey}`;
 
     cityBig.append(cityBigContent);
-    
+
     let updateCityTitle = $("#cityTitle");
-    let historyButton = $(`<button id ="history" class='col-12'>${inputValue}</button>`);
+    let historyButton = $(
+      `<button id ="history" class='col-12'>${inputValue}</button>`
+    );
 
     function API() {
       $.ajax({
@@ -99,6 +101,25 @@ function createCityBigCard() {
                 let temp = data2.list[0].main.temp;
                 let wind = data2.list[0].wind.speed;
                 let hum = data2.list[0].main.humidity;
+
+                $.ajax({
+                  url: "http://localhost:3000/story",
+                  method: "POST",
+                  contentType: "application/json",
+                  data: JSON.stringify({
+                    city: item.name,
+                    temp: temp,
+                    weather: data2.list[0].weather[0].description,
+                  }),
+                  success: function (storyRes) {
+                    // Append the fun AI-generated message under the city card
+                    let story = $("<p>").text(storyRes.story);
+                    $("#cityTitle").after(story);
+                  },
+                  error: function (err) {
+                    console.error("Error calling AI story API:", err);
+                  },
+                });
 
                 data2.list.shift();
                 for (let j = 0; j < 5; j++) {
